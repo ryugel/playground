@@ -83,3 +83,7 @@ config :phoenix_live_view,
 
 # Disable swoosh api client as it is only required for production adapters.
 config :swoosh, :api_client, false
+
+config :franmalth_portfolio,
+  contact_email: System.get_env("CONTACT_EMAIL") || "cookie@chocolate.co",
+  firstname: System.get_env("FIRSTNAME") || "Cookie"

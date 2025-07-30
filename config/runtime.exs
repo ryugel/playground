@@ -24,9 +24,9 @@ if config_env() == :prod do
   database_url =
     System.get_env("DATABASE_URL") ||
       raise """
-      environment variable DATABASE_URL is missing.
-      For example: ecto://USER:PASS@HOST/DATABASE
-      """
+        environment variable DATABASE_URL is missing.
+        For example: ecto://USER:PASS@HOST/DATABASE
+        """
 
   maybe_ipv6 = if System.get_env("ECTO_IPV6") in ~w(true 1), do: [:inet6], else: []
 
@@ -44,14 +44,18 @@ if config_env() == :prod do
   secret_key_base =
     System.get_env("SECRET_KEY_BASE") ||
       raise """
-      environment variable SECRET_KEY_BASE is missing.
-      You can generate one by calling: mix phx.gen.secret
-      """
+        environment variable SECRET_KEY_BASE is missing.
+        You can generate one by calling: mix phx.gen.secret
+        """
 
   host = System.get_env("PHX_HOST") || "example.com"
   port = String.to_integer(System.get_env("PORT") || "4000")
 
   config :franmalth_portfolio, :dns_cluster_query, System.get_env("DNS_CLUSTER_QUERY")
+
+  config :franmalth_portfolio,
+    contact_email: System.fetch_env!("CONTACT_EMAIL"),
+    firstname: System.fetch_env!("FIRSTNAME")
 
   config :franmalth_portfolio, FranmalthPortfolioWeb.Endpoint,
     url: [host: host, port: 443, scheme: "https"],
