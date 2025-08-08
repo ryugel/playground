@@ -1,4 +1,4 @@
-FROM hexpm/elixir:1.17.2-erlang-27.0.1-debian-bullseye-20240612 AS build
+FROM hexpm/elixir:1.17.2-erlang-27.0.1-debian-bullseye-latest AS build
 
 RUN apt-get update -y && apt-get install -y build-essential git curl nodejs npm
 
