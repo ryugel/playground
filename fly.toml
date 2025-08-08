@@ -1,7 +1,0 @@
-app = "franmalth"
-
-[build]
-  image = "registry.fly.io/franmalth:deployment-44411111a6537e6fa5016782beda6657"
-
-[deploy]
-  release_command = ""
