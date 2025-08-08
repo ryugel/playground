@@ -26,9 +26,9 @@ RUN cd assets && \
 
 COPY lib lib
 COPY priv priv
-RUN mix compile && mix phx.digest && mix release
+RUN mix compile && mix phx.digest
 
-FROM debian:bullseye-slim
+FROM elixir:1.17.2-slim
 RUN apt-get update -y && \
     apt-get install -y libstdc++6 openssl libncurses5 locales && \
     apt-get clean && \
@@ -38,5 +38,6 @@ RUN apt-get update -y && \
 
 WORKDIR /app
 ENV LANG=en_US.UTF-8 MIX_ENV=prod PORT=4000
-COPY --from=builder /app/_build/prod/rel/franmalth_portfolio ./
-CMD ["bin/franmalth_portfolio", "start"]
+
+COPY --from=builder /app ./
+CMD ["mix", "phx.server"]
