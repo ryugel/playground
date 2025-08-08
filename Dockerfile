@@ -31,6 +31,7 @@ RUN mix compile && \
     mix phx.digest && \
     mix release
 
+# Étape d'exécution
 FROM debian:bullseye-slim
 
 RUN apt-get update -y && \
@@ -45,9 +46,6 @@ ENV LANG=en_US.UTF-8 \
     MIX_ENV=prod \
     PORT=4000
 
-COPY --from=build /app/_build/prod/rel/franmalth_portfolio ./
+COPY --from=builder /app/_build/prod/rel/franmalth_portfolio ./
 
-ENV LANG=en_US.UTF-8
-ENV SHELL=/bin/bash
-ENV MIX_ENV=prod
 CMD ["bin/franmalth_portfolio", "start"]
