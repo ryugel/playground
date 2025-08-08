@@ -45,9 +45,9 @@ RUN apt-get update -y && \
 RUN sed -i '/en_US.UTF-8/s/^# //g' /etc/locale.gen && locale-gen
 
 WORKDIR /app
-COPY --from=build /app/_build/prod/rel/pulseboard ./
+COPY --from=build /app/_build/prod/rel/franmalth_portfolio ./
 
 ENV LANG=en_US.UTF-8
 ENV SHELL=/bin/bash
 ENV MIX_ENV=prod
-CMD ["bin/pulseboard", "start"]
+CMD ["bin/franmalth_portfolio", "start"]
