@@ -1,14 +1,11 @@
 {
   "name": "assets",
   "version": "1.0.0",
-  "main": "tailwind.config.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "deploy": "npm run build",
+    "build": "esbuild ./js/app.js --bundle --minify --outfile=../priv/static/js/app.js && npm run build:css",
+    "build:css": "tailwindcss -o ../priv/static/css/app.css --minify"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
   "devDependencies": {
     "autoprefixer": "^10.4.21",
     "esbuild": "^0.25.8",
