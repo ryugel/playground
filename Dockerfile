@@ -18,8 +18,11 @@ RUN mix deps.get --only prod && mix deps.compile
 COPY assets ./assets
 RUN cd assets && \
     npm install && \
-    npm install esbuild tailwindcss && \
-    npm run deploy
+    npm install --save-dev esbuild tailwindcss @tailwindcss/forms && \
+    npm install --save phoenix phoenix_html phoenix_live_view && \
+    npm run deploy && \
+    npm cache clean --force && \
+    rm -rf /tmp/*
 
 COPY lib lib
 COPY priv priv
