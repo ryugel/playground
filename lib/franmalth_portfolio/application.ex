@@ -9,7 +9,6 @@ defmodule FranmalthPortfolio.Application do
   def start(_type, _args) do
     children = [
       FranmalthPortfolioWeb.Telemetry,
-      FranmalthPortfolio.Repo,
       {DNSCluster, query: Application.get_env(:franmalth_portfolio, :dns_cluster_query) || :ignore},
       {Phoenix.PubSub, name: FranmalthPortfolio.PubSub},
       # Start the Finch HTTP client for sending emails
